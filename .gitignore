@@ -35,3 +35,6 @@
 
 # OS X
 .DS_Store
+
+# KaiZhang
+.vscode/

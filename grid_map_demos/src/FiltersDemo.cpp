@@ -52,6 +52,7 @@ bool FiltersDemo::readParameters()
 
 void FiltersDemo::callback(const grid_map_msgs::GridMap& message)
 {
+  ROS_INFO("Enter callback!");
   // Convert message to map.
   GridMap inputMap;
   GridMapRosConverter::fromMessage(message, inputMap);
