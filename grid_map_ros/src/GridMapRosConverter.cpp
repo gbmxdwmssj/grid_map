@@ -279,7 +279,7 @@ void GridMapRosConverter::toOccupancyGrid(const grid_map::GridMap& gridMap,
     if (isnan(value))
       value = -1;
     else
-      value = cellMin + min(max(0.0f, value), 1.0f) * cellRange;
+      value = cellMax - min(max(0.0f, value), 1.0f) * cellRange; // value = cellMin + min(max(0.0f, value), 1.0f) * cellRange;
     size_t index = getLinearIndexFromIndex(iterator.getUnwrappedIndex(), gridMap.getSize(), false);
     // Reverse cell order because of different conventions between occupancy grid and grid map.
     occupancyGrid.data[nCells - index - 1] = value;
