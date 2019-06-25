@@ -18,6 +18,8 @@ def callback(map):
         map.info.height,
         map.info.resolution))
 
+    print(min(map.data))
+    print(max(map.data))
     time_str = time.strftime("%Y-%m-%d-%H:%M:%S", time.localtime())
     map_meta_data = {'image': 'occ-map-'+time_str+'.png',
                     'resolution': 1}
@@ -32,7 +34,7 @@ def callback(map):
             i = x + (map.info.height - 1 - y) * map.info.width
             p = map.data[i] / 100.0
             pixel_value = 255.0 * (1.0 - p)
-            img[y,x] = pixel_value
+            img[y, x] = pixel_value
 
     img_path = 'occ-map-'+time_str+'.png'
     if (cv2.imwrite(img_path, img)):
