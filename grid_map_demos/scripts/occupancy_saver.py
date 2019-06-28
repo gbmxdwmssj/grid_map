@@ -52,4 +52,4 @@ rospy.Subscriber('/grid_map_visualization/traversability_grid', OccupancyGrid, c
 print('Waiting for occupancy grid map...')
 
 while (not saved_map_ and not rospy.is_shutdown()):
-    time.sleep(1.0)
+    time.sleep(0.1)

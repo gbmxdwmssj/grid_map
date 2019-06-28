@@ -32,20 +32,23 @@ def write_occ_map(occ_map, content, img):
 rospy.init_node('occupancy_server', anonymous=True)
 pub = rospy.Publisher('/map', OccupancyGrid, queue_size=10, latch=True)
 
-yaml_path = sys.argv[1]
-with open(yaml_path, 'r') as f:
-    content = yaml.load(f)
-yaml_dir = os.path.dirname(yaml_path)
-img_path = yaml_dir + '/' + content['image']
-img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
-if (img is None):
-    print('Fail to read image!')
+if (len(sys.argv) <= 1):
+    print('Please input the .yaml file of your map!')
 else:
-    print('Success to read image!')
-    occ_map = OccupancyGrid()
-    write_occ_map(occ_map, content, img)
-    pub.publish(occ_map)
-    print(min(occ_map.data))
-    print(max(occ_map.data))
-    print('The occupancy grid map has been published (latched)!')
-    rospy.spin()
+    yaml_path = sys.argv[1]
+    with open(yaml_path, 'r') as f:
+        content = yaml.load(f)
+    yaml_dir = os.path.dirname(yaml_path)
+    img_path = yaml_dir + '/' + content['image']
+    img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE)
+    if (img is None):
+        print('Fail to read image!')
+    else:
+        print('Success to read image!')
+        occ_map = OccupancyGrid()
+        write_occ_map(occ_map, content, img)
+        pub.publish(occ_map)
+        print(min(occ_map.data))
+        print(max(occ_map.data))
+        print('The occupancy grid map has been published (latched)!')
+        rospy.spin()
