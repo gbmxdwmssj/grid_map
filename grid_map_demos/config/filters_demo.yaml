@@ -22,3 +22,9 @@ grid_map_visualization:
      layer: traversability
      data_min: 0.0
      data_max: 1.0
+  - name: elevation_grid
+    type: occupancy_grid
+    params:
+     layer: elevation
+     data_min: -0.12
+     data_max: 0.53

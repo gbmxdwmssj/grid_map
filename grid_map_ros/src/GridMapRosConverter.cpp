@@ -274,7 +274,14 @@ void GridMapRosConverter::toOccupancyGrid(const grid_map::GridMap& gridMap,
   const float cellMax = 100;
   const float cellRange = cellMax - cellMin;
 
+  float min_map_value =  9999999.9;
+  float max_map_value = -9999999.9;
   for (GridMapIterator iterator(gridMap); !iterator.isPastEnd(); ++iterator) {
+    if (gridMap.at(layer, *iterator) > max_map_value) {
+      max_map_value = gridMap.at(layer, *iterator);
+    } else if (gridMap.at(layer, *iterator) < min_map_value) {
+      min_map_value = gridMap.at(layer, *iterator);
+    }
     float value = (gridMap.at(layer, *iterator) - dataMin) / (dataMax - dataMin);
     if (isnan(value))
       value = -1;
@@ -283,6 +290,11 @@ void GridMapRosConverter::toOccupancyGrid(const grid_map::GridMap& gridMap,
     size_t index = getLinearIndexFromIndex(iterator.getUnwrappedIndex(), gridMap.getSize(), false);
     // Reverse cell order because of different conventions between occupancy grid and grid map.
     occupancyGrid.data[nCells - index - 1] = value;
+  }
+  if (layer == "elevation") {
+    printf("-------------\n");
+    printf("%f\n", max_map_value);
+    printf("%f\n", min_map_value);
   }
 }
 

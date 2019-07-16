@@ -25,12 +25,22 @@ int main(int argc, char** argv)
   while (nh.ok()) {
 
     // Add data to grid map.
+    float min_map_value =  9999999.9;
+    float max_map_value = -9999999.9;
     ros::Time time = ros::Time::now();
     for (GridMapIterator it(map); !it.isPastEnd(); ++it) {
       Position position;
       map.getPosition(*it, position);
       map.at("elevation", *it) = -0.04 + 0.2 * std::sin(3.0 * time.toSec() + 5.0 * position.y()) * position.x();
+      if (map.at("elevation", *it) > max_map_value) {
+        max_map_value = map.at("elevation", *it);
+      } else if (map.at("elevation", *it) < min_map_value) {
+        min_map_value = map.at("elevation", *it);
+      }
     }
+    printf("-------------\n");
+    printf("%f\n", max_map_value);
+    printf("%f\n", min_map_value);
 
     // Publish grid map.
     map.setTimestamp(time.toNSec());
