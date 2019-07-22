@@ -16,7 +16,7 @@
   <!-- Launch the image to grid map demo node (this provides the input for the filter demo). -->
   <node pkg="grid_map_demos" type="image_publisher.py" name="image_publisher" output="screen">
     <!-- <param name="image_path" value="$(find grid_map_demos)/data/terrain.png" /> -->
-    <param name="image_path" value="/home/kai/git/rough-terrain-planning/maps/map-11/default_rgb.png" />
+    <param name="image_path" value="/home/kai/git/rough-terrain-planning/maps/map-14/default_rgb.png" />
     <param name="topic" value="~image" />
   </node>
   <node pkg="grid_map_demos" type="image_to_gridmap_demo" name="image_to_gridmap_demo" output="screen" />

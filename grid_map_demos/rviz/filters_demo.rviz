@@ -43,7 +43,7 @@ Visualization Manager:
       Color: 200; 200; 200
       Color Layer: elevation
       Color Transformer: GridMapLayer
-      Enabled: true
+      Enabled: false
       Height Layer: elevation
       Height Transformer: Layer
       History Length: 1
@@ -57,7 +57,7 @@ Visualization Manager:
       Topic: /grid_map_filter_demo/filtered_map
       Unreliable: false
       Use Rainbow: true
-      Value: true
+      Value: false
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Class: grid_map_rviz_plugin/GridMap
@@ -173,7 +173,7 @@ Visualization Manager:
       Value: false
     - Alpha: 1
       Class: rviz/Map
-      Color Scheme: map
+      Color Scheme: raw
       Draw Behind: false
       Enabled: false
       Name: Elevation
@@ -185,12 +185,12 @@ Visualization Manager:
       Class: rviz/Map
       Color Scheme: map
       Draw Behind: false
-      Enabled: false
+      Enabled: true
       Name: Occupancy
       Topic: /grid_map_visualization/traversability_grid
       Unreliable: false
       Use Timestamp: false
-      Value: false
+      Value: true
     - Alpha: 1
       Buffer Length: 1
       Class: rviz/Path
